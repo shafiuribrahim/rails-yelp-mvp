@@ -1,6 +1,4 @@
-
 class RestaurantsController < ApplicationController
-  require "byebug"
   before_action :set_restaurant, only: [:show, :edit]
 
   def index
@@ -8,14 +6,12 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-
+    @reviews = @restaurant.reviews
+    @review = Review.new
   end
 
   def new
     @restaurant = Restaurant.new
-  end
-
-  def edit
   end
 
   def create
@@ -25,6 +21,9 @@ class RestaurantsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def edit
   end
 
   private
