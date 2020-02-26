@@ -1,11 +1,14 @@
+
 class RestaurantsController < ApplicationController
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  require "byebug"
+  before_action :set_restaurant, only: [:show, :edit]
 
   def index
     @restaurants = Restaurant.all
   end
 
   def show
+
   end
 
   def new
@@ -16,13 +19,12 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-  end
-
-  def update
-  end
-
-  def destroy
-    @restaurant.destroy
+    @restaurant = Restaurant.new(restaurant_params)
+    if @restaurant.save
+      redirect_to restaurant_path(@restaurant)
+    else
+      render 'new'
+    end
   end
 
   private
